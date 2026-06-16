@@ -1,0 +1,71 @@
+/* ─────────────────────────────────────────────
+   SEARCH BAR
+   Inside the sidebar.
+───────────────────────────────────────────── */
+
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: var(--sp-3);
+  color: var(--text-muted);
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.search-input {
+  width: 100%;
+  padding: var(--sp-2) var(--sp-3) var(--sp-2) var(--sp-8);
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--bg-border);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: var(--text-sm);
+  line-height: var(--lh-snug);
+  caret-color: var(--accent-green);
+  transition: border-color var(--transition-fast),
+              background-color var(--transition-fast),
+              box-shadow var(--transition-fast);
+}
+
+.search-input::placeholder {
+  color: var(--text-muted);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: rgba(34, 197, 94, 0.35);
+  background-color: var(--bg-surface);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.06);
+}
+
+/* Clear (×) button inside search */
+.search-clear {
+  position: absolute;
+  right: var(--sp-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  transition: color var(--transition-fast),
+              background-color var(--transition-fast);
+}
+
+.search-clear:hover {
+  color: var(--text-secondary);
+  background-color: var(--bg-border);
+}
+
+/* Status text under search: "3 results for 'login'" */
+.search-status {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  padding: var(--sp-1) 0 0 var(--sp-1);
+  letter-spacing: var(--ls-base);
+}

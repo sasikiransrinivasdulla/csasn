@@ -1,0 +1,89 @@
+/* ─────────────────────────────────────────────
+   APP LAYOUT
+   Two-column: sidebar (fixed) + scrollable content
+───────────────────────────────────────────── */
+
+.app {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--bg-base);
+}
+
+/* ── SIDEBAR COLUMN ─────────────────────── */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: var(--sidebar-width);
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: var(--z-sidebar);
+  flex-shrink: 0;
+}
+
+/* ── CONTENT COLUMN ─────────────────────── */
+
+.content {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  min-height: 100vh;
+  padding: var(--sp-10) var(--sp-10) var(--sp-16);
+  background-color: var(--bg-base);
+}
+
+/* Center the reading column — cap readable width */
+.chapters-container {
+  max-width: var(--content-max-w);
+  margin: 0 auto;
+}
+
+/* ── FOOTER ─────────────────────────────── */
+
+.site-footer {
+  margin-left: var(--sidebar-width);
+  background-color: var(--bg-base);
+  border-top: 1px solid var(--bg-border);
+  padding: var(--sp-5) var(--sp-10);
+}
+
+/* ── RESPONSIVE — Tablets & smaller ─────── */
+
+@media (max-width: 900px) {
+
+  .app {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--bg-border);
+  }
+
+  .content {
+    margin-left: 0;
+    padding: var(--sp-8) var(--sp-6) var(--sp-12);
+  }
+
+  .site-footer {
+    margin-left: 0;
+    padding: var(--sp-5) var(--sp-6);
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .content {
+    padding: var(--sp-6) var(--sp-4) var(--sp-10);
+  }
+
+  .content__header-inner {
+    flex-direction: column;
+  }
+
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ServiceNow CSA Certification Helper — Study notes covering Service Catalog, ACLs, Update Sets, CMDB, Flow Designer, Import Sets, and more. Ace the CSA exam." />
+  <meta name="keywords" content="ServiceNow CSA, CSA Certification, ServiceNow Study, CSA Notes, ServiceNow Admin" />
+  <meta name="author" content="Sasi" />
+  <title>ServiceNow CSA Certification Helper</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/sidebar.css" />
+  <link rel="stylesheet" href="css/content.css" />
+  <link rel="stylesheet" href="css/accordion.css" />
+  <link rel="stylesheet" href="css/search.css" />
+  <link rel="stylesheet" href="css/scrollbar.css" />
+  <link rel="stylesheet" href="css/typography.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/blocks.css" />
+</head>
+<body>
+
+  <!-- ─────────────────────────────────────────────
+       APP SHELL
+  ───────────────────────────────────────────── -->
+  <div id="app" class="app">
+
+    <!-- ── LEFT SIDEBAR ── -->
+    <aside id="sidebar" class="sidebar" role="navigation" aria-label="Chapter navigation">
+
+      <!-- Brand -->
+      <div class="sidebar__brand">
+        <h1 class="brand__title">ServiceNow CSA</h1>
+        <p class="brand__subtitle">Study • Revise • Clear CSA</p>
+      </div>
+
+      <!-- Search -->
+      <div class="sidebar__search" role="search">
+        <div class="search-wrapper">
+          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input
+            type="search"
+            id="search-input"
+            class="search-input"
+            placeholder="Search chapters, topics..."
+            autocomplete="off"
+            spellcheck="false"
+            aria-label="Search all chapters and notes"
+          />
+          <button class="search-clear" id="search-clear" aria-label="Clear search" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 6 6 18M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        <!-- Live search result count -->
+        <p class="search-status" id="search-status" aria-live="polite" hidden></p>
+      </div>
+
+      <!-- Chapter Navigation List -->
+      <nav class="sidebar__nav" aria-label="Chapter list">
+        <ul class="chapter-list" id="chapter-nav-list" role="list">
+          <!-- Populated dynamically by chapters.js -->
+        </ul>
+      </nav>
+
+      <!-- Sidebar Footer Info -->
+      <div class="sidebar__meta">
+        <span class="meta-badge">CSA Exam Prep</span>
+      </div>
+
+    </aside>
+
+    <!-- ── RIGHT CONTENT AREA ── -->
+    <main id="content" class="content" role="main" aria-label="Study content">
+
+      <!-- Content Header -->
+      <header class="content__header">
+        <div class="content__header-inner">
+          <h2 class="content__heading">Certification Notes</h2>
+          <p class="content__subheading">Click any chapter to expand its notes. Use search to find topics instantly.</p>
+        </div>
+        <!-- Expand / Collapse All Controls -->
+        <div class="content__controls">
+          <button id="btn-expand-all" class="ctrl-btn" aria-label="Expand all chapters">Expand All</button>
+          <button id="btn-collapse-all" class="ctrl-btn" aria-label="Collapse all chapters">Collapse All</button>
+        </div>
+      </header>
+
+      <!-- Search Results Banner (shown when searching) -->
+      <div id="search-results-banner" class="search-results-banner" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.35-4.35"/>
+        </svg>
+        <span id="search-results-text"></span>
+        <button class="search-results-clear" id="search-results-clear" aria-label="Clear search">Clear</button>
+      </div>
+
+      <!-- No Results Message -->
+      <div id="no-results" class="no-results" hidden>
+        <div class="no-results__icon" aria-hidden="true">◯</div>
+        <p class="no-results__title">No results found</p>
+        <p class="no-results__hint">Try different keywords or browse chapters from the sidebar.</p>
+      </div>
+
+      <!-- Chapters Container — Accordions rendered here by chapters.js -->
+      <div id="chapters-container" class="chapters-container" role="list" aria-label="Study chapters">
+        <!-- Chapters injected by JavaScript -->
+      </div>
+
+    </main>
+
+  </div><!-- /app -->
+
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer" role="contentinfo">
+    <p class="footer__text">Sasi made with love ❤️ 2422</p>
+  </footer>
+
+  <!-- Scripts — load order matters -->
+  <script src="js/data/chapters.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/accordion.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>

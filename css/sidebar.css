@@ -1,0 +1,149 @@
+/* ─────────────────────────────────────────────
+   SIDEBAR
+   Brand, search and chapter navigation.
+───────────────────────────────────────────── */
+
+.sidebar {
+  background-color: var(--bg-surface);
+  border-right: 1px solid var(--bg-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── BRAND ──────────────────────────────── */
+
+.sidebar__brand {
+  padding: var(--sp-6) var(--sp-5) var(--sp-5);
+  border-bottom: 1px solid var(--bg-border);
+  flex-shrink: 0;
+}
+
+.brand__title {
+  font-size: var(--text-md);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+  letter-spacing: var(--ls-tight);
+  line-height: var(--lh-tight);
+  /* Subtle green glow on the title */
+  text-shadow: 0 0 20px rgba(34, 197, 94, 0.08);
+}
+
+.brand__subtitle {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  margin-top: var(--sp-1);
+}
+
+/* ── SEARCH ─────────────────────────────── */
+
+.sidebar__search {
+  padding: var(--sp-4) var(--sp-4) var(--sp-3);
+  border-bottom: 1px solid var(--bg-border);
+  flex-shrink: 0;
+}
+
+/* ── NAV ────────────────────────────────── */
+
+.sidebar__nav {
+  flex: 1;
+  padding: var(--sp-3) var(--sp-2) var(--sp-4);
+  overflow-y: auto;
+}
+
+.chapter-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+/* Individual nav item */
+.chapter-nav-item {
+  position: relative;
+}
+
+.chapter-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  width: 100%;
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-regular);
+  color: var(--text-secondary);
+  text-align: left;
+  transition: background-color var(--transition-fast),
+              color var(--transition-fast);
+  cursor: pointer;
+  line-height: var(--lh-snug);
+}
+
+.chapter-nav-btn:hover {
+  background-color: var(--bg-elevated);
+  color: var(--text-primary);
+}
+
+/* Active chapter in nav */
+.chapter-nav-btn.is-active {
+  background-color: var(--accent-green-dim);
+  color: var(--accent-green);
+  font-weight: var(--fw-medium);
+}
+
+.chapter-nav-btn.is-active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 60%;
+  background-color: var(--accent-green);
+  border-radius: var(--radius-full);
+}
+
+/* Chapter number badge */
+.chapter-nav-number {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  min-width: 22px;
+}
+
+.chapter-nav-btn.is-active .chapter-nav-number {
+  color: var(--accent-green);
+  opacity: 0.7;
+}
+
+/* Chapter label text */
+.chapter-nav-label {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Hidden during search filter */
+.chapter-nav-item.is-hidden {
+  display: none;
+}
+
+/* ── SIDEBAR META ───────────────────────── */
+
+.sidebar__meta {
+  padding: var(--sp-4) var(--sp-5);
+  border-top: 1px solid var(--bg-border);
+  flex-shrink: 0;
+}
+
+.meta-badge {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
