@@ -1,39 +1,35 @@
 /**
  * app.js — Application Bootstrap
  *
- * Entry point. Runs after all scripts are loaded.
- *
- * Execution order:
- *   1. Render all chapter accordion cards into #chapters-container.
- *   2. Bind accordion click events.
- *   3. Render sidebar navigation items.
- *   4. Init scroll spy for active chapter tracking.
- *   5. Init live search engine.
- *
- * Chapter card HTML template:
- *   Built from each chapter object in CHAPTERS (chapters.js).
+ * Merges CHAPTERS + CHAPTERS_2 + CHAPTERS_3 + CHAPTERS_4
+ * into one ALL_CHAPTERS array, then renders everything.
  */
 
 (function () {
-
   'use strict';
 
-  // ── Render Chapter Cards ───────────────────────────────────
+  // Merge all chapter data files into one array
+  const ALL_CHAPTERS = [
+    ...(typeof CHAPTERS   !== 'undefined' ? CHAPTERS   : []),
+    ...(typeof CHAPTERS_2 !== 'undefined' ? CHAPTERS_2 : []),
+    ...(typeof CHAPTERS_3 !== 'undefined' ? CHAPTERS_3 : []),
+    ...(typeof CHAPTERS_4 !== 'undefined' ? CHAPTERS_4 : []),
+  ];
+
+  // ── Render Chapter Cards ─────────────────────────────────
 
   function renderChapters() {
     const container = document.getElementById('chapters-container');
-    if (!container || !Array.isArray(CHAPTERS)) return;
-
+    if (!container) return;
     container.innerHTML = '';
 
-    CHAPTERS.forEach((chapter) => {
+    ALL_CHAPTERS.forEach((chapter) => {
       const card = document.createElement('article');
       card.className = 'chapter-card';
       card.id = chapter.id;
       card.setAttribute('role', 'listitem');
       card.setAttribute('aria-label', `Chapter ${chapter.number}: ${chapter.title}`);
 
-      // Build tag chips HTML
       const tagsHTML = (chapter.tags && chapter.tags.length)
         ? `<div class="chapter-tags" aria-hidden="true">
              ${chapter.tags.map(t => `<span class="tag">${t}</span>`).join('')}
@@ -41,7 +37,6 @@
         : '';
 
       card.innerHTML = `
-        <!-- Accordion Header (clickable trigger) -->
         <button
           class="chapter-header"
           type="button"
@@ -60,8 +55,6 @@
             </svg>
           </span>
         </button>
-
-        <!-- Accordion Body (CSS grid collapse) -->
         <div
           class="chapter-body-wrapper"
           id="body-${chapter.id}"
@@ -81,23 +74,18 @@
     });
   }
 
-  // ── Init ───────────────────────────────────────────────────
+  // ── Expose merged chapters for nav.js and search.js ──────
+
+  window.__ALL_CHAPTERS = ALL_CHAPTERS;
+
+  // ── Init ─────────────────────────────────────────────────
 
   function init() {
-    // 1. Render chapters
     renderChapters();
-
-    // 2. Bind accordion events
     accordion.bindEvents();
-
-    // 3. Render sidebar nav + init scroll spy
     nav.init();
-
-    // 4. Init search engine
     search.init();
   }
-
-  // ── Boot on DOMContentLoaded ───────────────────────────────
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);

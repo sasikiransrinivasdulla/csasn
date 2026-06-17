@@ -16,7 +16,9 @@ const nav = (() => {
 
   function renderNav() {
     const listEl = document.getElementById('chapter-nav-list');
-    if (!listEl || !Array.isArray(CHAPTERS)) return;
+    const chapters = window.__ALL_CHAPTERS || (typeof CHAPTERS !== 'undefined' ? CHAPTERS : []);
+    if (!listEl || !chapters.length) return;
+    const CHAPTERS = chapters; // shadow for loop below
 
     listEl.innerHTML = '';
 

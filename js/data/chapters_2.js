@@ -21,7 +21,7 @@ const CHAPTERS_2 = [
 <ul>
   <li>Send <strong>Email / SMS / Push</strong> when conditions are met.</li>
   <li>Triggered by: <strong>Events</strong>, <strong>Record insert/update</strong>, or called from Flow Designer.</li>
-  <li>Template uses <strong>variables</strong> like <code>${literal('${incident.number}')}</code>.</li>
+  <li>Template uses <strong>variables</strong> like <code>&#36;{incident.number}</code>.</li>
   <li>Can be sent to: Users, Groups, email addresses.</li>
   <li>Stored in <span class="kw">sysevent_email_action</span> table.</li>
   <li><strong>Notification Preference</strong> — Users can opt out of certain notifications.</li>
